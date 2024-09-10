@@ -1,165 +1,120 @@
 
-### **1. Dashboard Wireframe**
 
-The **Dashboard** serves as the primary user interface for web users, providing a comprehensive overview of their wallets, alerts, and transactions.
+### **Wireframe for Dashboard (Core Backend)**
 
-#### **Wireframe Overview (Dashboard)**
+#### **1.1 User Management**
+- **Components**: 
+  - List of registered users (filter by platform: Telegram, Discord, Website).
+  - Search bar to find users by username or wallet.
+  - User activity status (Active, Inactive).
+  - Option to manage user alerts, track wallets, and remove users.
 
-**Header Section (Top Bar)**:
-- **Logo/Brand Name** (Top left corner)
-- **Navigation Menu** (Top right)
-  - Home
-  - Wallets
-  - Alerts
-  - Transactions
-  - Profile
-  - Logout
+- **Key Actions**:
+  - View user details (platform, wallet addresses, alert types).
+  - Assign or remove wallets manually.
+  - Delete a user or transfer data to another platform.
 
----
+#### **1.2 Wallet Tracking System**
+- **Components**:
+  - List of wallets being tracked (sorted by user).
+  - Filter by blockchain (Ethereum, Solana, Binance Smart Chain).
+  - Last transaction date and time, balance status.
 
-**Main Content Area**:
-- **Wallet Overview** (Upper central panel):
-  - **Add New Wallet** (Button with input field for wallet address + blockchain dropdown)
-  - **Tracked Wallets List**:
-    - **Wallet Card**: Each wallet displayed in a card format with:
-      - Wallet Name/Address
-      - Current Balance (Token + USD value)
-      - Blockchain Type (Ethereum, Binance Smart Chain, etc.)
-      - Quick Action Buttons:
-        - **View Transaction History**
-        - **Set Alert**
-        - **Remove Wallet**
+- **Key Actions**:
+  - Add or remove wallets from the user.
+  - Link wallet to multiple alert types (transaction, price).
+  - Check wallet history and balance changes.
 
----
+#### **1.3 Alert Configuration**
+- **Components**:
+  - List of all alerts (sorted by user and alert type).
+  - Alert status (Active, Paused, Expired).
+  - Alert types (Price, Transaction, Balance).
 
-- **Price Alerts Section** (Below Wallet Overview):
-  - **Add Price Alert** (Button leading to alert configuration form)
-  - **Active Alerts List**:
-    - Token Name
-    - Price Range Set
-    - Notification Method (Telegram, Email, etc.)
-    - Edit/Delete buttons
+- **Key Actions**:
+  - Set or modify alert parameters (e.g., price thresholds).
+  - Assign alerts to a specific wallet.
+  - Manage alert delivery methods (Telegram, Discord, etc.).
+  - Pause or delete alerts.
 
----
+#### **1.4 Platform Management**
+- **Components**:
+  - Platforms linked to the bot (Telegram, Discord, Website).
+  - Integration status (Connected, Disconnected).
+  - Platform user count.
 
-- **Recent Transactions** (Bottom section):
-  - **Transaction Feed** (Real-time feed of wallet transactions):
-    - Date
-    - Incoming/Outgoing Transaction
-    - Token Amount
-    - View on Blockchain Explorer (Etherscan, Solana Explorer, etc.)
-
----
-
-**Side Panel (Optional)**:
-- **Profile Summary**
-  - Account Information (Email, subscription tier, etc.)
-  - Link to Settings
-- **Cross-Blockchain Filter**
-  - Blockchain toggle or icons for Ethereum, Solana, BSC, etc.
+- **Key Actions**:
+  - Manage integration settings (API keys, webhook configurations).
+  - Sync user data between platforms.
+  - Test alerts or wallet tracking across platforms.
 
 ---
 
-### **2. Telegram Bot Wireframe**
+### **Wireframe for Telegram Bot**
 
-The **Telegram Bot** interface will be primarily conversational, but the design wireframe will outline how users will interact with the bot and receive information.
+#### **2.1 User Registration Flow**
+- **Flow**:
+  - User sends `/start` command to begin.
+  - Bot responds with a welcome message and instructions to register their wallet.
+  - Bot asks for the user’s preferred blockchain and wallet address.
 
-#### **Wireframe Overview (Telegram Bot)**
+- **Components**:
+  - Registration flow that captures platform type (Telegram).
+  - Ability to ask for wallet addresses from multiple blockchains.
 
-**Start Screen**:
-- **Welcome Message**: "Welcome to the Crypto Wallet Tracker Bot!"
-- **Options Menu** (As buttons under the message):
-  - Track a New Wallet
-  - Set Price Alert
-  - View Transaction History
-  - Help/FAQ
+- **Key Actions**:
+  - Register user with wallet and platform details.
+  - Save user preferences and notify them of successful registration.
 
----
+#### **2.2 Wallet Tracking & Alert Setup**
+- **Flow**:
+  - User sends `/addwallet` to add a new wallet for tracking.
+  - Bot prompts for blockchain and wallet address.
+  - User confirms the wallet and selects alert types (price, transaction, balance changes).
 
-**User Actions Flow**:
-1. **Track a New Wallet**:
-   - **Bot Prompt**: "Please enter your wallet address and select the blockchain."
-   - **User Input**: Text input (wallet address) + button (Blockchain selection)
-   - **Bot Confirmation**: "Your wallet has been added and is now being tracked."
+- **Components**:
+  - Menu-driven conversation for setting alerts (e.g., price threshold or transaction type).
+  - Show active wallets and alerts with options to modify or delete them.
 
----
+- **Key Actions**:
+  - Set up wallet-specific alerts for price changes, transaction alerts.
+  - Notify the user when an alert is triggered.
+  - User can manage (pause/delete) active alerts directly through the bot.
 
-2. **Set Price Alert**:
-   - **Bot Prompt**: "Enter the token name and the price range for alerts."
-   - **User Input**: Token name + price range
-   - **Bot Confirmation**: "Price alert set. You will be notified when the token reaches the specified price."
+#### **2.3 Multi-Platform Link**
+- **Flow**:
+  - User can link their Telegram account to Discord or the Website for unified management.
+  - Bot sends a link to authenticate on other platforms.
 
----
+- **Components**:
+  - Link generation and sharing for Discord or Website sign-up.
+  - Syncing wallets and alerts between platforms.
 
-3. **View Transaction History**:
-   - **Bot Prompt**: "Please select the wallet you wish to view."
-   - **User Input**: Dropdown list of tracked wallets
-   - **Bot Response**: "Here are your most recent transactions" (List of transactions in text format)
-
----
-
-4. **Help/FAQ**:
-   - Bot provides a brief overview of how to use commands and features.
-
----
-
-**Notification Flow**:
-- **Price Alert Notification**:
-  - "Your alert for [Token Name] has been triggered. Current price: [Price]"
-  - **Button**: View details
-- **Transaction Notification**:
-  - "New transaction detected in [Wallet Name]. [Amount] [Token] received."
-  - **Button**: View transaction on blockchain explorer
+- **Key Actions**:
+  - Notify the user when their Telegram, Discord, and Website accounts are linked.
+  - Provide user the ability to view and manage data across platforms.
 
 ---
 
-### **3. Core Wireframe**
+### **Core Backend Components**
 
-The **Core** is responsible for backend functionalities such as data processing, blockchain interaction, and API management. While the core is not directly user-facing, the wireframe for internal data flow and API calls can be outlined for clarity.
+#### **3.1 User Data Storage**
+- **Data Fields**:
+  - User ID, Username, Platform (Telegram, Discord, Website).
+  - Wallet addresses (linked to the user).
+  - Active alerts (type, status).
+  
+- **Key Functions**:
+  - Register and track multiple wallets per user.
+  - Link user data across multiple platforms (Telegram, Discord).
 
-#### **Wireframe Overview (Core)**
-
-**Data Flow Chart**:
-
-1. **Blockchain APIs**:
-   - **Ethereum (Infura/Alchemy)**
-   - **Solana (Solana APIs)**
-   - **Binance Smart Chain (BSC APIs)**
-   - **Integration Layer**: A service that connects to different blockchains via APIs (Web3.js, Web3.py, ethers.js).
-
----
-
-2. **Transaction Processor**:
-   - **Real-time Sync**:
-     - Fetch wallet balances and transaction data
-     - Process transaction alerts and wallet updates
-   - **Scheduled Jobs**:
-     - Periodically query blockchain for wallet status updates
-     - Check for incoming/outgoing transactions
-
----
-
-3. **Price Feed API**:
-   - **CoinGecko API**
-   - **CoinMarketCap API**
-   - Fetch and store real-time token price data for alerts and dashboard display.
-
----
-
-4. **Database**:
-   - **User Data**:
-     - Wallet addresses, user profile, alert preferences
-   - **Transaction Data**:
-     - Historical transactions
-     - Notifications log
-   - **Price Data**:
-     - Real-time and historical price points for tracked tokens.
-
----
-
-5. **Notification Service**:
-   - **Telegram Bot API**
-   - **Discord Webhooks**
-   - **SendGrid/Twilio (For Email/SMS)**
+#### **3.2 Wallet Alert System**
+- **Components**:
+  - Alert trigger mechanisms for price, transactions, and balance changes.
+  - Cross-platform notification system (Telegram, Discord, Email).
+  
+- **Key Functions**:
+  - Trigger alerts based on blockchain activity (real-time checks).
+  - Push notifications to linked platforms (Telegram, Discord).
 
 ---
